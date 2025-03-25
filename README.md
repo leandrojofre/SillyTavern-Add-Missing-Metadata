@@ -1,33 +1,20 @@
 # SillyTavern Extension Example
 
-*Provide a brief description of how your extension works, what problem it aims to solve.*
+This is an extension *created primarily for extension devs* that allows to insert missing metadata within a chat that is necessary for their extensions.
 
 ## Features
 
-*Describe some of the main selling points of your extension.*
-
-## Installation and Usage
+- Add missing ```token_count``` inside ```chat[mes_id][extra]['token_count']```.
 
 ### Installation
 
-*In most cases, this should just be using ST's inbuilt extension installer.* 
+Install the extension using this link: ```https://github.com/leandrojofre/SillyTavern-Add-Missing-Metadata.git```
 
 ### Usage
 
-*Explain how to use this extension.*
-
-## Prerequisites
-
-*Specify the version of ST necessary here.*
+Within the extension settings, click the button for the metadata you want to add.
 
 ## Support and Contributions
 
-*Where should someone ask for support?*
-
-*Consider including your own contact info for help/questions.*
-
-*How can people help add to this extension?*
-
-## License
-
-*Be cool, use an open source license.*
+- Thanks to city-unit for the [extension template](https://github.com/city-unit/st-extension-example/).
+- Thanks to bmen25124 for the idea.
