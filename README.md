@@ -14,6 +14,8 @@ Install the extension using this link: ```https://github.com/leandrojofre/SillyT
 
 Within the extension settings, click the button for the metadata you want to add.
 
+<image width="100%" src="https://github.com/user-attachments/assets/ec195e9a-48b1-4c46-bf39-14291d63978d"/>
+
 ## Support and Contributions
 
 - Thanks to city-unit for the [extension template](https://github.com/city-unit/st-extension-example/).
