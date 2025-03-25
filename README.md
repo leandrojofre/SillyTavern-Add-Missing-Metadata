@@ -1,4 +1,4 @@
-# SillyTavern Extension Example
+# Add Missing Metadata
 
 This is an extension *created primarily for extension devs* that allows to insert missing metadata within a chat that is necessary for their extensions.
 
