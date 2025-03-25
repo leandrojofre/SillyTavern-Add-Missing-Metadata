@@ -1,11 +1,12 @@
 {
-    "display_name": "Name Displayed in SillyTavern",
-    "loading_order": 9,
+    "display_name": "Add Missing Metadata",
+    "loading_order": 200,
     "requires": [],
     "optional": [],
     "js": "index.js",
     "css": "style.css",
-    "author": "yourNameHere",
+    "author": "Leandro Jofre",
     "version": "1.0.0",
-    "homePage": "yourUrlHere"
+    "homePage": "https://github.com/leandrojofre/SillyTavern-Add-Missing-Metadata.git",
+    "auto_update": true
 }
