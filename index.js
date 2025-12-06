@@ -1,39 +1,58 @@
-import {extension_settings} from "../../../extensions.js";
-import {saveSettingsDebounced, chat, is_send_press, deactivateSendButtons, activateSendButtons, saveChatDebounced, reloadCurrentChat} from "../../../../script.js";
-import {getTokenCountAsync} from "../../../tokenizers.js";
+import {isGenerating} from "../../../../script.js";
 
-// * Extension variables
+/** @type {Function} */
+toastr.error
+
+/** @type {Function} */
+toastr.warning
+
+/** @type {Function} */
+toastr.success
+
+// * MARK:Extension variables
+
+const context = () => SillyTavern.getContext();
+const {
+    chat,
+    chatId,
+    getTokenCountAsync,
+    deactivateSendButtons,
+    activateSendButtons,
+    saveChatConditional,
+    saveSettingsDebounced
+} = context();
 
 const extensionName = "SillyTavern-Add-Missing-Metadata";
 const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
-const extensionSettings = extension_settings[extensionName];
+const extensionSettings = context().extensionSettings[extensionName];
 const defaultSettings = {
     enabled: true,
     debug: false
 };
 
-const context = () => SillyTavern.getContext();
+const HTML_TEMPLATES = {
+    settings: async function() {
+        return await $.get(`${extensionFolderPath}/settings.html`)
+    }
+};
 
-// * Debugs methods
+// * MARK:Debugs methods
 
 const log = (...msg) => {
     if (!extensionSettings.enabled || !extensionSettings.debug) return;
     console.log("[" + extensionName + "]", ...msg);
 };
 
-// * Extension methods
+// * MARK:Extension methods
 
 /** Adds token_count to all messages in the current chat */
 async function addTokenCount() {
     if (!extensionSettings.enabled) return;
 
-    // @ts-ignore
-    if (context().chatId === undefined) return toastr.error("No chat is active");
-    // @ts-ignore
-    if (is_send_press) return toastr.error("Generating message, try again when generation finishes");
+    if (chatId === undefined) return toastr.error("No chat is active");
+    if (isGenerating()) return toastr.warning("Generating message, try again when generation finishes");
 
     deactivateSendButtons();
-    log("addTokenCount/chat", chat)
 
     for (const mess of chat) {
         if (!mess["extra"] && mess["extra"]["token_count"] !== undefined) continue;
@@ -42,9 +61,8 @@ async function addTokenCount() {
         mess["extra"]["token_count"] = Number(currentTokenCount);
     }
 
-    saveChatDebounced();
+    saveChatConditional();
     activateSendButtons();
-    // @ts-ignore
     toastr.success("token_count added to all messages in the current chat");
 }
 
@@ -53,7 +71,7 @@ function setExtensionButtons() {
     $('#add-miss-meta-token-count').on("click", addTokenCount);
 }
 
-// * Methods in charge of controlling the extension settings
+// * MARK:Extension settings
 
 const settingsCallbacks = {
     /**	Enables/Disables the extension */
@@ -86,7 +104,7 @@ function displaySettings() {
 
 /** Append settings menu on ST and set listeners. */
 async function loadHTMLSettings() {
-    const settingsHtml = await $.get(`${extensionFolderPath}/settings.html`);
+    const settingsHtml = await HTML_TEMPLATES.settings();
 
     $("#extensions_settings").append(settingsHtml);
 
