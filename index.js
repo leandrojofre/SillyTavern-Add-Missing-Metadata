@@ -14,7 +14,6 @@ toastr.success
 const context = () => SillyTavern.getContext();
 const {
     chat,
-    chatId,
     getTokenCountAsync,
     deactivateSendButtons,
     activateSendButtons,
@@ -49,16 +48,16 @@ const log = (...msg) => {
 async function addTokenCount() {
     if (!extensionSettings.enabled) return;
 
-    if (chatId === undefined) return toastr.error("No chat is active");
+    if (context().chatId === undefined) return toastr.error("No chat is active");
     if (isGenerating()) return toastr.warning("Generating message, try again when generation finishes");
 
     deactivateSendButtons();
 
     for (const mess of chat) {
-        if (!mess["extra"] && mess["extra"]["token_count"] !== undefined) continue;
+        if (!mess.extra && mess.extra.token_count !== undefined) continue;
 
-        const currentTokenCount = await getTokenCountAsync(String(mess["mes"]));
-        mess["extra"]["token_count"] = Number(currentTokenCount);
+        const currentTokenCount = await getTokenCountAsync(String(mess.mes));
+        mess.extra.token_count = Number(currentTokenCount);
     }
 
     saveChatConditional();
