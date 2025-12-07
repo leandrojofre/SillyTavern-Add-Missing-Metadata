@@ -6,7 +6,7 @@
     "js": "index.js",
     "css": "style.css",
     "author": "Leandro Jofre",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "homePage": "https://github.com/leandrojofre/SillyTavern-Add-Missing-Metadata.git",
     "auto_update": true
 }
