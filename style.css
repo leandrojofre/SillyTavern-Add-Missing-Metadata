@@ -12,6 +12,7 @@
 	label.flex-container {
 		align-items: center;
 		flex-wrap: nowrap;
+		gap: 10px;
 	}
 
 	button.menu_button {

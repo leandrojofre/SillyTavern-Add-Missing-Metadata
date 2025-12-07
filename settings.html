@@ -25,6 +25,21 @@ You might want to add additional HTML elements to ST. It's good practice to sepa
 					<button id="add-miss-meta-token-count" class="menu_button" type="button">Add Token Count</button>
 					<span>Add missing token count to all messages</span>
 				</div>
+
+				<div class="flex-container">
+					<i class="fa-solid fa-exclamation-triangle"></i>
+					<span>WARNING - Use this next features at your own discretion, while important SillyTavern metadata will not be overriden, data from extensions will be overriden if they already exist, and it could break things</span>
+				</div>
+
+				<div class="flex-container">
+					<button id="add-miss-meta-export-chat-metadata" class="menu_button" type="button">Export chat metadata</button>
+					<span>Downloads a JSON file</span>
+				</div>
+
+				<div class="flex-container">
+					<button id="add-miss-meta-import-chat-metadata" class="menu_button" type="button">Import chat metadata</button>
+					<span>It will merge current metadata with the file metadata, overriding repeated entries</span>
+				</div>
 			</div>
 
 			<div class="flex-container flex-column mb-1">
