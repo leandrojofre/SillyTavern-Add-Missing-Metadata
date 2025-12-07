@@ -2,7 +2,7 @@
 A small extension meant to modify and backfill chat metadata with ease.
 
 ### Features
-- Add missing ```token_count``` inside ```chat[mes_id][extra]['token_count']```.
+- Add missing ```token_count``` inside ```chat[mes_id].extra.token_count```.
 - Export and import chat metadata. This can break extension if they saved data not meant to be moved between chat files. If that happens, report the bug to make this extension ignore importing/exporting data from that extension.
 
 ### Installation
